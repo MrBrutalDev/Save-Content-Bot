@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route("/")
 def welcome():
     # Render the welcome page with animated "Team SPY" text
-    return 'Hello, From Mr. Brutal'
+    return render_template("welcome.html")
 
 if __name__ == "__main__":
     # Default to port 5000 if PORT is not set in the environment
