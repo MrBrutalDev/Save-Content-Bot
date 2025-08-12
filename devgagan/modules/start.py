@@ -1,17 +1,3 @@
-# ---------------------------------------------------
-# File Name: start.py
-# Description: A Pyrogram bot for downloading files from Telegram channels or groups 
-#              and uploading them back to Telegram.
-# Author: Gagan
-# GitHub: https://github.com/devgaganin/
-# Telegram: https://t.me/team_spy_pro
-# YouTube: https://youtube.com/@dev_gagan
-# Created: 2025-01-11
-# Last Modified: 2025-01-11
-# Version: 2.0.5
-# License: MIT License
-# ---------------------------------------------------
-
 from pyrogram import filters
 from devgagan import app
 from config import OWNER_ID
@@ -186,9 +172,10 @@ async def plan(client, message):
     plan_text = (
        """> **🎖️ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴꜱ :**
 
- ❏ 030₹ OR 1$   ➠    𝟶2 ᴡᴇᴇᴋꜱ
- ❏ 𝟶50₹ OR 2$   ➠    𝟶𝟷 ᴍᴏɴᴛʜ
- ❏ 140₹ OR 5$   ➠    𝟶𝟹 ᴍᴏɴᴛʜ
+ ❏ 030₹ OR 1$   ➠    𝟶1 ᴡᴇᴇᴋ
+ ❏ 𝟶60₹ OR 1$   ➠    𝟶2 ᴡᴇᴇᴋꜱ
+ ❏ 90₹ OR 2$    ➠    𝟶𝟷 ᴍᴏɴᴛʜ
+ ❏ 250₹ OR 5$   ➠    𝟶𝟹 ᴍᴏɴᴛʜ
 
 **🆔 ᴜᴘɪ ɪᴅ ➩ ** `Misterbrutal@apl`
 
@@ -218,9 +205,10 @@ async def see_plan(client, callback_query):
     plan_text = (
       """> **🎖️ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴꜱ :**
 
- ❏ 030₹ OR 1$   ➠    𝟶2 ᴡᴇᴇᴋꜱ
- ❏ 𝟶50₹ OR 2$   ➠    𝟶𝟷 ᴍᴏɴᴛʜ
- ❏ 140₹ OR 5$   ➠    𝟶𝟹 ᴍᴏɴᴛʜ
+ ❏ 030₹ OR 1$   ➠    𝟶1 ᴡᴇᴇᴋ
+ ❏ 𝟶60₹ OR 1$   ➠    𝟶2 ᴡᴇᴇᴋꜱ
+ ❏ 90₹ OR 2$    ➠    𝟶𝟷 ᴍᴏɴᴛʜ
+ ❏ 250₹ OR 5$   ➠    𝟶𝟹 ᴍᴏɴᴛʜ
 
 **🆔 ᴜᴘɪ ɪᴅ ➩ ** `Misterbrutal@apl`
 
