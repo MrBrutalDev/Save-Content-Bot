@@ -1,18 +1,3 @@
- 
-# ---------------------------------------------------
-# File Name: shrink.py
-# Description: A Pyrogram bot for downloading files from Telegram channels or groups 
-#              and uploading them back to Telegram.
-# Author: Gagan
-# GitHub: https://github.com/devgaganin/
-# Telegram: https://t.me/team_spy_pro
-# YouTube: https://youtube.com/@dev_gagan
-# Created: 2025-01-11
-# Last Modified: 2025-01-11
-# Version: 2.0.5
-# License: MIT License
-# ---------------------------------------------------
-
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import random
@@ -74,22 +59,24 @@ async def token_handler(client, message):
     user_id = message.chat.id
     if len(message.command) <= 1:
         image_url = "https://envs.sh/Fgv.jpg"
-        join_button = InlineKeyboardButton("Join Channel", url="https://t.me/MrBrutal_Bots")
-        premium = InlineKeyboardButton("Get Premium", url="https://t.me/Ig_1Venom")   
-        keyboard = InlineKeyboardMarkup([
-            [join_button],   
-            [premium]    
-        ])
-         
+        btn = [
+            [
+            InlineKeyboardButton("Updates Channel", url="https://t.me/MrBrutal_Bot")
+            ],[
+            InlineKeyboardButton("Support Group", url="https://t.me/MrBrutal_Support"),
+            ]
+        ]
+        caption = f"""<b> <blockquote>Ram Ram Bhai {message.from_user.mention} </blockquote>
+        
+                ✳️ I can save posts from Channels or Groups where forwarding is off.
+                ✳️ Simply send the post link of a public channel.
+                ✳️ For private channels, You'll Have To Login. Send /help to know more.
+                </b>"""
         await message.reply_photo(
             msg.photo.file_id,
-            caption=(
-                "**Hi 👋 Welcome**\n\n"
-                "**✳️ I can save posts from Channels or Groups where forwarding is off.**\n"
-                "**✳️ Simply send the post link of a public channel.**\n"
-                "**✳️ For private channels, You'll Have To Login. Send /help to know more.**"
-            ),
-            reply_markup=keyboard
+            caption=caption,
+            reply_markup=InlineKeyboardMarkup(btn),
+            parse_mode=enums.ParseMode.HTML
         )
         return  
  
@@ -107,10 +94,10 @@ async def token_handler(client, message):
                 "user_id": user_id,
                 "param": param,
                 "created_at": datetime.utcnow(),
-                "expires_at": datetime.utcnow() + timedelta(hours=20),
+                "expires_at": datetime.utcnow() + timedelta(hours=12),
             })
-            del Param[user_id]   
-            await message.reply("✅ You have been verified successfully! Enjoy your session for next 20 hours.")
+            del Param[user_id]
+            await message.reply("✅ You have been verified successfully! Enjoy your session for next 12 hours.")
             return
         else:
             await message.reply("❌ Invalid or expired verification link. Please generate a new token.")

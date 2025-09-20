@@ -1,18 +1,3 @@
-# ---------------------------------------------------
-# File Name: get_func.py
-# Description: A Pyrogram bot for downloading files from Telegram channels or groups 
-#              and uploading them back to Telegram.
-# Author: Gagan
-# GitHub: https://github.com/devgaganin/
-# Telegram: https://t.me/team_spy_pro
-# YouTube: https://youtube.com/@dev_gagan
-# Created: 2025-01-11
-# Last Modified: 2025-02-01
-# Version: 2.0.5
-# License: MIT License
-# Improved logic handles
-# ---------------------------------------------------
-
 import asyncio
 import time
 import gc
@@ -77,7 +62,7 @@ async def format_caption_to_html(caption: str) -> str:
     
 
 
-async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
+async def upload_media(sender, target_chat_id, file, caption, edit, topic_id, thumb_path):
     try:
         upload_method = await fetch_upload_method(sender)  # Fetch the upload method (Pyrogram or Telethon)
         metadata = video_metadata(file)
@@ -131,7 +116,6 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
                     parse_mode=ParseMode.MARKDOWN,
                     progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
                 )
-                await asyncio.sleep(2)
                 await dm.copy(LOG_GROUP)
 
         # Telethon upload

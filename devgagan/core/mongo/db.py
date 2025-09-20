@@ -71,17 +71,23 @@ async def set_channel(user_id, chat_id):
         await db.insert_one({"_id": user_id, "chat_id": chat_id})
 async def all_words_remove(user_id):
     await db.update_one({"_id": user_id}, {"$set": {"clean_words": None}})
+
 async def remove_thumbnail(user_id):
     await db.update_one({"_id": user_id}, {"$set": {"thumb": None}})
+
 async def remove_caption(user_id):
     await db.update_one({"_id": user_id}, {"$set": {"caption": None}})
+
 async def remove_replace(user_id):
     await db.update_one({"_id": user_id}, {"$set": {"replace_txt": None, "to_replace": None}})
  
 async def remove_session(user_id):
     await db.update_one({"_id": user_id}, {"$set": {"session": None}})
+
 async def remove_channel(user_id):
     await db.update_one({"_id": user_id}, {"$set": {"chat_id": None}})
+
+
 async def delete_session(user_id):
     """Delete the session associated with the given user_id from the database."""
     await db.update_one({"_id": user_id}, {"$unset": {"session": ""}})

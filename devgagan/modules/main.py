@@ -1,25 +1,10 @@
-# ---------------------------------------------------
-# File Name: main.py
-# Description: A Pyrogram bot for downloading files from Telegram channels or groups 
-#              and uploading them back to Telegram.
-# Author: Gagan
-# GitHub: https://github.com/devgaganin/
-# Telegram: https://t.me/team_spy_pro
-# YouTube: https://youtube.com/@dev_gagan
-# Created: 2025-01-11
-# Last Modified: 2025-01-11
-# Version: 2.0.5
-# License: MIT License
-# More readable 
-# ---------------------------------------------------
-
 import time
 import random
 import string
 import asyncio
 from pyrogram import filters, Client
 from devgagan import app, userrbot
-from config import API_ID, API_HASH, FREEMIUM_LIMIT, PREMIUM_LIMIT, OWNER_ID, DEFAULT_SESSION
+from config import API_ID, API_HASH, FREEMIUM_LIMIT, PREMIUM_LIMIT, OWNER_ID, DEFAULT_SESSION, WAITING_TIME
 from devgagan.core.get_func import get_msg
 from devgagan.core.func import *
 from devgagan.core.mongo import db
@@ -62,10 +47,10 @@ async def check_interval(user_id, freecheck):
 
     return True, None
 
-async def set_interval(user_id, interval_minutes=45):
+async def set_interval(user_id, WAITING_TIME=WAITING_TIME):
     now = datetime.now()
     # Set the cooldown interval for the user
-    interval_set[user_id] = now + timedelta(seconds=interval_minutes)
+    interval_set[user_id] = now + timedelta(seconds=WAITING_TIME)
     
 
 @app.on_message(
@@ -126,7 +111,7 @@ async def initialize_userbot(user_id): # this ensure the single startup .. even 
     data = await db.get_data(user_id)
     if data and data.get("session"):
         try:
-            device = 'iPhone 16 Pro' # added gareebi text
+            device = 'Brutal Iphone' # added gareebi text
             userbot = Client(
                 "userbot",
                 api_id=API_ID,
@@ -161,7 +146,7 @@ async def process_special_links(userbot, user_id, msg, link):
     special_patterns = ['t.me/c/', 't.me/b/', '/s/', 'tg://openmessage']
     if any(sub in link for sub in special_patterns):
         await process_and_upload_link(userbot, user_id, msg.id, link, 0, msg)
-        await set_interval(user_id, interval_minutes=45)
+        await set_interval(user_id, WAITING_TIME=WAITING_TIME)
         return
     await msg.edit_text("Invalid link...")
 
@@ -188,8 +173,8 @@ async def batch_link(_, message):
     max_batch_size = FREEMIUM_LIMIT if freecheck == 1 else PREMIUM_LIMIT
 
     # Start link input
-    for attempt in range(3):
-        start = await app.ask(message.chat.id, "Please send the start link.\n\n> Maximum tries 3")
+    for attempt in range(5):
+        start = await app.ask(message.chat.id, "Please send the start link.\n\n> Maximum tries 5")
         start_id = start.text.strip()
         s = start_id.split("/")[-1]
         if s.isdigit():
@@ -197,12 +182,12 @@ async def batch_link(_, message):
             break
         await app.send_message(message.chat.id, "Invalid link. Please send again ...")
     else:
-        await app.send_message(message.chat.id, "Maximum attempts exceeded. Try later.")
+        await app.send_message(message.chat.id, "Maximum attempts exceeded. Try again by using /batch.")
         return
 
     # Number of messages input
-    for attempt in range(3):
-        num_messages = await app.ask(message.chat.id, f"How many messages do you want to process?\n> Max limit {max_batch_size}")
+    for attempt in range(5):
+        num_messages = await app.ask(message.chat.id, f"How many messages do you want to process?\n> Please Send a Number Like: 10,50 etc.\n> Max limit {max_batch_size}")
         try:
             cl = int(num_messages.text.strip())
             if 1 <= cl <= max_batch_size:
@@ -251,7 +236,7 @@ async def batch_link(_, message):
                     )
                     normal_links_handled = True
         if normal_links_handled:
-            await set_interval(user_id, interval_minutes=300)
+            await set_interval(user_id, WAITING_TIME=300)
             await pin_msg.edit_text(
                 f"Batch completed successfully for {cl} messages 🎉\n\n**Bot By @MrBrutal_Bots**",
                 reply_markup=keyboard
@@ -276,12 +261,12 @@ async def batch_link(_, message):
                         reply_markup=keyboard
                     )
 
-        await set_interval(user_id, interval_minutes=300)
+        await set_interval(user_id, WAITING_TIME=300)
         await pin_msg.edit_text(
-            f"Batch completed successfully for {cl} messages 🎉\n\n**Bot By @MrBrutal_Bots**",
+            f"Batch completed successfully for {cl} messages 🎉",
             reply_markup=keyboard
         )
-        await app.send_message(message.chat.id, "Batch completed successfully! 🎉")
+        await app.send_message(message.chat.id, "<b>Batch completed successfully! 🎉</b>", parse_mode="html")
 
     except Exception as e:
         await app.send_message(message.chat.id, f"Error: {e}")
