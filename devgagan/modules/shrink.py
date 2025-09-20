@@ -50,15 +50,19 @@ async def is_user_verified(user_id):
  
 @app.on_message(filters.command("start"))
 async def token_handler(client, message):
+    try:
+        await message.react(emoji="🔥", big=True)
+    except:
+        pass   
     """Handle the /token command."""
     join = await subscribe(client, message)
     if join == 1:
         return
-    chat_id = "Filmaze_Updates"
-    msg = await app.get_messages(chat_id, 3 )
+    # chat_id = "Filmaze_Movies"
+    # msg = await app.get_messages(chat_id, 3 )
     user_id = message.chat.id
     if len(message.command) <= 1:
-        image_url = "https://envs.sh/Fgv.jpg"
+        START_IMAGE = "https://envs.sh/Fgv.jpg"
         btn = [
             [
             InlineKeyboardButton("Updates Channel", url="https://t.me/MrBrutal_Bot")
@@ -73,9 +77,10 @@ async def token_handler(client, message):
                 ✳️ For private channels, You'll Have To Login. Send /help to know more.
                 </b>"""
         await message.reply_photo(
-            msg.photo.file_id,
+            photo=START_IMAGE,
             caption=caption,
             reply_markup=InlineKeyboardMarkup(btn),
+            has_spoiler=True,
             parse_mode=enums.ParseMode.HTML
         )
         return  
