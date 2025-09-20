@@ -73,7 +73,7 @@ async def token_handler(client, message):
             InlineKeyboardButton("Support Group", url="https://t.me/MrBrutal_Support"),
             ]
         ]
-        caption = f"""<b> <blockquote>Ram Ram Bhai {user.mention}</blockquote>
+        caption = f"""<b> <blockquote>Ram Ram Bhai {user}</blockquote>
         
             ✳️ I can save posts from Channels or Groups where forwarding is off.
             ✳️ Simply send the post link of a public channel.
