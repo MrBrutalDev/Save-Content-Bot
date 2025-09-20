@@ -53,29 +53,32 @@ async def token_handler(client, message):
     try:
         await message.react(emoji="🔥", big=True)
     except:
-        pass   
+        pass  
+    m = await message.reply_text("⏳")
+    await asyncio.sleep(0.4)
+    await m.delete() 
+    
     """Handle the /token command."""
     join = await subscribe(client, message)
     if join == 1:
         return
-    # chat_id = "Filmaze_Movies"
-    # msg = await app.get_messages(chat_id, 3 )
+    user = message.from_user
     user_id = message.chat.id
     if len(message.command) <= 1:
         START_IMAGE = "https://envs.sh/Fgv.jpg"
         btn = [
             [
-            InlineKeyboardButton("Updates Channel", url="https://t.me/MrBrutal_Bot")
+            InlineKeyboardButton("Updates Channel", url="https://t.me/MrBrutal_Bots")
             ],[
             InlineKeyboardButton("Support Group", url="https://t.me/MrBrutal_Support"),
             ]
         ]
-        caption = f"""<b> <blockquote>Ram Ram Bhai {message.from_user.mention} </blockquote>
+        caption = f"""<b> <blockquote>Ram Ram Bhai {user.mention}</blockquote>
         
-                ✳️ I can save posts from Channels or Groups where forwarding is off.
-                ✳️ Simply send the post link of a public channel.
-                ✳️ For private channels, You'll Have To Login. Send /help to know more.
-                </b>"""
+            ✳️ I can save posts from Channels or Groups where forwarding is off.
+            ✳️ Simply send the post link of a public channel.
+            ✳️ For private channels, You'll Have To Login. Send /help to know more.
+            </b>"""
         await message.reply_photo(
             photo=START_IMAGE,
             caption=caption,
