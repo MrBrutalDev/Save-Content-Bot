@@ -161,8 +161,8 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id, th
         print(f"Error during media upload: {e}")
 
     finally:
-        if thumb_path and os.path.exists(thumb_path):
-            os.remove(thumb_path)
+        # if thumb_path and os.path.exists(thumb_path):
+        #     os.remove(thumb_path)
         gc.collect()
 
 
@@ -579,7 +579,7 @@ get_user_caption_preference = lambda user_id: user_caption_preferences.get(str(u
 sessions = {}
 m = None
 SET_PIC = "settings.jpg"
-MESS = "Customize by your end and Configure your settings ..."
+MESS = "** Customize by your end and Configure your settings ... **"
 
 @gf.on(events.NewMessage(incoming=True, pattern='/settings'))
 async def settings_command(event):
@@ -622,7 +622,6 @@ async def send_settings_message(chat_id, user_id):
 
     await gf.send_file(
         chat_id,
-        file=SET_PIC,
         caption=MESS,
         buttons=buttons
     )
