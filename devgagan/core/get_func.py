@@ -5,21 +5,22 @@ import os
 import re
 from typing import Callable
 from devgagan import app
-import aiofiles
+import aiofiles # type: ignore 
 from devgagan import sex as gf
-from telethon.tl.types import DocumentAttributeVideo, Message
-from telethon.sessions import StringSession
+from telethon.tl.types import DocumentAttributeVideo, Message # type: ignore
+from telethon.sessions import StringSession # type: ignore
 import pymongo
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram.errors import ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid
-from pyrogram.enums import MessageMediaType, ParseMode
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton # type: ignore
+from pyrogram.errors import ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid # type: ignore
+from pyrogram.enums import MessageMediaType, ParseMode # type: ignore
 from devgagan.core.func import *
-from pyrogram.errors import RPCError
-from pyrogram.types import Message
+from pyrogram.errors import RPCError # type: ignore
+from pyrogram.types import Message # type: ignore
 from config import MONGO_DB as MONGODB_CONNECTION_STRING, LOG_GROUP, OWNER_ID, STRING, API_ID, API_HASH
 from devgagan.core.mongo import db as odb
-from telethon import TelegramClient, events, Button
-from devgagantools import fast_upload
+from telethon import TelegramClient, events, Button # type: ignore
+from devgagantools import fast_upload # type: ignore
+
 
 def thumbnail(sender):
     return f'{sender}.jpg' if os.path.exists(f'{sender}.jpg') else None
@@ -161,8 +162,8 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id, th
         print(f"Error during media upload: {e}")
 
     finally:
-        # if thumb_path and os.path.exists(thumb_path):
-        #     os.remove(thumb_path)
+        if thumb_path and os.path.exists((thumb_path)):
+            os.remove(thumb_path) 
         gc.collect()
 
 
@@ -613,15 +614,9 @@ async def send_settings_message(chat_id, user_id):
             Button.inline("⚠️ Rᴇsᴇᴛ Sᴇᴛᴛɪɴɢs", b"reset")
         ]]
 
-        # [Button.inline("Set Chat ID", b'setchat'), Button.inline("Set Rename Tag", b'setrename')],
-        # [Button.inline("Caption", b'setcaption'), Button.inline("Replace Words", b'setreplacement')],
-        # [Button.inline("Remove Words", b'delete'), Button.inline("Reset", b'reset')],
-        # [Button.inline("Session Login", b'addsession'), Button.inline("Logout", b'logout')],
-        # [Button.inline("Set Thumbnail", b'setthumb'), Button.inline("Remove Thumbnail", b'remthumb')],
-        # [Button.inline("Upload Method", b'uploadmethod')]  # Include the dynamic Fast upload
-
     await gf.send_file(
         chat_id,
+        file=SET_PIC,
         caption=MESS,
         buttons=buttons
     )
