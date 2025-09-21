@@ -62,7 +62,6 @@ async def token_handler(client, message):
     join = await subscribe(client, message)
     if join == 1:
         return
-    user = message.from_user
     user_id = message.chat.id
     if len(message.command) <= 1:
         START_IMAGE = "https://envs.sh/Fgv.jpg"
@@ -73,7 +72,7 @@ async def token_handler(client, message):
             InlineKeyboardButton("Support Group", url="https://t.me/MrBrutal_Support"),
             ]
         ]
-        caption = f"""<b> <blockquote>Ram Ram Bhai {user}</blockquote>
+        caption = f"""<b> <blockquote>Ram Ram Bhai</blockquote>
         
             ✳️ I can save posts from Channels or Groups where forwarding is off.
             ✳️ Simply send the post link of a public channel.

@@ -195,7 +195,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
         elif '/s/' in msg_link: # fixed story typo
             edit = await app.edit_message_text(sender, edit_id, "Story Link Dictected...")
             if userbot is None:
-                await edit.edit("Login in bot save stories...")     
+                await edit.edit("Login in bot to save stories...")     
                 return
             parts = msg_link.split("/")
             chat = parts[3]
@@ -589,20 +589,36 @@ async def settings_command(event):
 async def send_settings_message(chat_id, user_id):
     
     # Define the rest of the buttons
-    buttons = [
-        [Button.inline("Set Chat ID", b'setchat'), Button.inline("Set Rename Tag", b'setrename')],
-        [Button.inline("Caption", b'setcaption'), Button.inline("Replace Words", b'setreplacement')],
-        [Button.inline("Remove Words", b'delete'), Button.inline("Reset", b'reset')],
-        [Button.inline("Session Login", b'addsession'), Button.inline("Logout", b'logout')],
-        [Button.inline("Set Thumbnail", b'setthumb'), Button.inline("Remove Thumbnail", b'remthumb')],
-        [Button.inline("Upload Method", b'uploadmethod')]  # Include the dynamic Fast upload
-    ]
+    buttons = [[
+            InlineKeyboardButton("📝 Sᴇᴛ Cʜᴀᴛ ɪᴅ", b'setchat'),
+            InlineKeyboardButton("🎫 Sᴇᴛ Rᴇɴᴀᴍᴇ Tᴀɢ", b'setrename')
+        ],[
+            InlineKeyboardButton("📋 Cᴀᴘᴛɪᴏɴ", b'setcaption'),
+            InlineKeyboardButton("🔁 Rᴇᴘʟᴀᴄᴇ Wᴏʀᴅs", b'setreplacement')
+        ],[
+            InlineKeyboardButton("🗑️ Rᴇᴍᴏᴠᴇ Wᴏʀᴅs", b'delete'),
+            InlineKeyboardButton("🚀 Uᴘʟᴏᴀᴅ Mᴇᴛʜᴏᴅ", b'uploadmethod')
+        ],[
+            InlineKeyboardButton("🔑 Sᴇssɪᴏɴ Lᴏɢɪɴ", b'addsession'),
+            InlineKeyboardButton("🚪 LᴏɢOᴜᴛ", b'logout')
+        ],[
+            InlineKeyboardButton("🖼️ Sᴇᴛ Tʜᴜᴍʙɴᴀɪʟ", b'setthumb'),
+            InlineKeyboardButton("❌ Rᴇᴍᴏᴠᴇ Tʜᴜᴍʙɴᴀɪʟ", b'remthumb')
+        ],[
+            InlineKeyboardButton("⚠️ Rᴇsᴇᴛ Sᴇᴛᴛɪɴɢs", b'reset')
+        ]]
+        # [Button.inline("Set Chat ID", b'setchat'), Button.inline("Set Rename Tag", b'setrename')],
+        # [Button.inline("Caption", b'setcaption'), Button.inline("Replace Words", b'setreplacement')],
+        # [Button.inline("Remove Words", b'delete'), Button.inline("Reset", b'reset')],
+        # [Button.inline("Session Login", b'addsession'), Button.inline("Logout", b'logout')],
+        # [Button.inline("Set Thumbnail", b'setthumb'), Button.inline("Remove Thumbnail", b'remthumb')],
+        # [Button.inline("Upload Method", b'uploadmethod')]  # Include the dynamic Fast upload
 
     await gf.send_file(
         chat_id,
         file=SET_PIC,
         caption=MESS,
-        buttons=buttons
+        buttons=InlineKeyboardMarkup(buttons)
     )
 
 
