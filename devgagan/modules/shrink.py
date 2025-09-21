@@ -70,14 +70,14 @@ async def token_handler(client, message):
             InlineKeyboardButton("Updates Channel", url="https://t.me/MrBrutal_Bots")
             ],[
             InlineKeyboardButton("Support Group", url="https://t.me/MrBrutal_Support"),
-            ]
-        ]
-        caption = f"""<b> <blockquote>Ram Ram Bhai</blockquote>
+            ]]
         
-            ✳️ I can save posts from Channels or Groups where forwarding is off.
-            ✳️ Simply send the post link of a public channel.
-            ✳️ For private channels, You'll Have To Login. Send /help to know more.
-            </b>"""
+        caption = f"""<b> <blockquote>🚩 𝐽𝐴𝐼 𝑆𝐻𝑅𝐸𝐸 𝑅𝐴𝑀 \n</blockquote>
+        
+        ✳️ I can save posts from Channels or Groups where forwarding is off.\n
+        ✳️ Simply send the post link of a public channel.\n
+        ✳️ For private channels, You'll Have To Login. Send /help to know more.
+        </b>"""
         await message.reply_photo(
             photo=START_IMAGE,
             caption=caption,

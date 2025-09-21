@@ -588,25 +588,31 @@ async def settings_command(event):
 
 async def send_settings_message(chat_id, user_id):
     
-    # Define the rest of the buttons
-    buttons = [[
-            InlineKeyboardButton("📝 Sᴇᴛ Cʜᴀᴛ ɪᴅ", b'setchat'),
-            InlineKeyboardButton("🎫 Sᴇᴛ Rᴇɴᴀᴍᴇ Tᴀɢ", b'setrename')
-        ],[
-            InlineKeyboardButton("📋 Cᴀᴘᴛɪᴏɴ", b'setcaption'),
-            InlineKeyboardButton("🔁 Rᴇᴘʟᴀᴄᴇ Wᴏʀᴅs", b'setreplacement')
-        ],[
-            InlineKeyboardButton("🗑️ Rᴇᴍᴏᴠᴇ Wᴏʀᴅs", b'delete'),
-            InlineKeyboardButton("🚀 Uᴘʟᴏᴀᴅ Mᴇᴛʜᴏᴅ", b'uploadmethod')
-        ],[
-            InlineKeyboardButton("🔑 Sᴇssɪᴏɴ Lᴏɢɪɴ", b'addsession'),
-            InlineKeyboardButton("🚪 LᴏɢOᴜᴛ", b'logout')
-        ],[
-            InlineKeyboardButton("🖼️ Sᴇᴛ Tʜᴜᴍʙɴᴀɪʟ", b'setthumb'),
-            InlineKeyboardButton("❌ Rᴇᴍᴏᴠᴇ Tʜᴜᴍʙɴᴀɪʟ", b'remthumb')
-        ],[
-            InlineKeyboardButton("⚠️ Rᴇsᴇᴛ Sᴇᴛᴛɪɴɢs", b'reset')
+    buttons = [
+        [
+            Button.inline("📝 Sᴇᴛ Cʜᴀᴛ ɪᴅ", b"setchat"),
+            Button.inline("🎫 Sᴇᴛ Rᴇɴᴀᴍᴇ Tᴀɢ", b"setrename")
+        ],
+        [
+            Button.inline("📋 Cᴀᴘᴛɪᴏɴ", b"setcaption"),
+            Button.inline("🔁 Rᴇᴘʟᴀᴄᴇ Wᴏʀᴅs", b"setreplacement")
+        ],
+        [
+            Button.inline("🗑️ Rᴇᴍᴏᴠᴇ Wᴏʀᴅs", b"delete"),
+            Button.inline("🚀 Uᴘʟᴏᴀᴅ Mᴇᴛʜᴏᴅ", b"uploadmethod")
+        ],
+        [
+            Button.inline("🔑 Sᴇssɪᴏɴ Lᴏɢɪɴ", b"addsession"),
+            Button.inline("🚪 LᴏɢOᴜᴛ", b"logout")
+        ],
+        [
+            Button.inline("🖼️ Sᴇᴛ Tʜᴜᴍʙɴᴀɪʟ", b"setthumb"),
+            Button.inline("❌ Rᴇᴍᴏᴠᴇ Tʜᴜᴍʙɴᴀɪʟ", b"remthumb")
+        ],
+        [
+            Button.inline("⚠️ Rᴇsᴇᴛ Sᴇᴛᴛɪɴɢs", b"reset")
         ]]
+
         # [Button.inline("Set Chat ID", b'setchat'), Button.inline("Set Rename Tag", b'setrename')],
         # [Button.inline("Caption", b'setcaption'), Button.inline("Replace Words", b'setreplacement')],
         # [Button.inline("Remove Words", b'delete'), Button.inline("Reset", b'reset')],
@@ -618,7 +624,7 @@ async def send_settings_message(chat_id, user_id):
         chat_id,
         file=SET_PIC,
         caption=MESS,
-        buttons=InlineKeyboardMarkup(buttons)
+        buttons=buttons
     )
 
 
