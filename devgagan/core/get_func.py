@@ -606,13 +606,29 @@ async def send_settings_message(chat_id, user_id):
     
     # Define the rest of the buttons
     buttons = [
-        [Button.inline("Set Chat ID", b'setchat'), Button.inline("Set Rename Tag", b'setrename')],
-        [Button.inline("Caption", b'setcaption'), Button.inline("Replace Words", b'setreplacement')],
-        [Button.inline("Remove Words", b'delete'), Button.inline("Reset", b'reset')],
-        [Button.inline("Session Login", b'addsession'), Button.inline("Logout", b'logout')],
-        [Button.inline("Set Thumbnail", b'setthumb'), Button.inline("Remove Thumbnail", b'remthumb')],
-        [Button.inline("Upload Method", b'uploadmethod')]  # Include the dynamic Fast upload
-    ]
+        [
+            Button.inline("📝 Sᴇᴛ Cʜᴀᴛ ɪᴅ", b"setchat"),
+            Button.inline("🎫 Sᴇᴛ Rᴇɴᴀᴍᴇ Tᴀɢ", b"setrename")
+        ],
+        [
+            Button.inline("📋 Cᴀᴘᴛɪᴏɴ", b"setcaption"),
+            Button.inline("🔁 Rᴇᴘʟᴀᴄᴇ Wᴏʀᴅs", b"setreplacement")
+        ],
+        [
+            Button.inline("🗑️ Rᴇᴍᴏᴠᴇ Wᴏʀᴅs", b"delete"),
+            Button.inline("🚀 Uᴘʟᴏᴀᴅ Mᴇᴛʜᴏᴅ", b"uploadmethod")
+        ],
+        [
+            Button.inline("🔑 Sᴇssɪᴏɴ Lᴏɢɪɴ", b"addsession"),
+            Button.inline("🚪 LᴏɢOᴜᴛ", b"logout")
+        ],
+        [
+            Button.inline("🖼️ Sᴇᴛ Tʜᴜᴍʙɴᴀɪʟ", b"setthumb"),
+            Button.inline("❌ Rᴇᴍᴏᴠᴇ Tʜᴜᴍʙɴᴀɪʟ", b"remthumb")
+        ],
+        [
+            Button.inline("⚠️ Rᴇsᴇᴛ Sᴇᴛᴛɪɴɢs", b"reset")
+        ]]
 
     await gf.send_file(
         chat_id,
