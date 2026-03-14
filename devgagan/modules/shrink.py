@@ -62,6 +62,8 @@ async def token_handler(client, message):
     join = await subscribe(client, message)
     if join == 1:
         return
+    chat_id = "Filmaze_Updates"
+    msg = await app.get_messages(chat_id, 3 )
     user_id = message.chat.id
     if len(message.command) <= 1:
         btn = [
