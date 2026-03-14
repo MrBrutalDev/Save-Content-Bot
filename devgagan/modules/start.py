@@ -7,9 +7,8 @@ from devgagan.core.func import *
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.raw.functions.bots import SetBotInfo
 from pyrogram.raw.types import InputUserSelf
-
 from pyrogram.types import BotCommand, InlineKeyboardButton, InlineKeyboardMarkup
- 
+from pyrogram import Client, filters
 @app.on_message(filters.command("set"))
 async def set(_, message):
     if message.from_user.id not in OWNER_ID:
@@ -145,8 +144,6 @@ async def on_help_navigation(client, callback_query):
     await callback_query.answer()
  
  
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
  
 @app.on_message(filters.command("terms") & filters.private)
 async def terms(client, message):
@@ -252,5 +249,4 @@ async def see_terms(client, callback_query):
         ]
     )
     await callback_query.message.edit_text(terms_text, reply_markup=buttons)
- 
  

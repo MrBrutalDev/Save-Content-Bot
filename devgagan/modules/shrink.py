@@ -1,15 +1,15 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup # type: ignore
 import random
-import requests
+import requests # type: ignore
 import string
-import aiohttp
+import aiohttp # type: ignore
 from devgagan import app
 from devgagan.core.func import *
 from datetime import datetime, timedelta
 from motor.motor_asyncio import AsyncIOMotorClient
-from config import MONGO_DB, WEBSITE_URL, AD_API, LOG_GROUP  
- 
+from config import MONGO_DB, WEBSITE_URL, AD_API, LOG_GROUP, TUTORIAL_URL, START_IMG
+from Script import script
  
 tclient = AsyncIOMotorClient(MONGO_DB)
 tdb = tclient["telegram_bot"]
@@ -64,7 +64,6 @@ async def token_handler(client, message):
         return
     user_id = message.chat.id
     if len(message.command) <= 1:
-        START_IMAGE = "https://envs.sh/Fgv.jpg"
         btn = [
             [
             InlineKeyboardButton("✅ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ", url="https://t.me/MrBrutal_Bots")
@@ -72,13 +71,9 @@ async def token_handler(client, message):
             InlineKeyboardButton("🎀 Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ", url="https://t.me/MrBrutal_Support"),
             ]]
         
-        caption = f"""<b> <blockquote>🚩 𝐽𝐴𝐼 𝑆𝐻𝑅𝐸𝐸 𝑅𝐴𝑀 \n</blockquote>
-        I can save posts from Channels or Groups where forwarding is off.\n
-        Simply send the post link of a public channel.\n
-        For private channels, You'll Have To Login. Send /help to know more.
-        </b>"""
+        caption = script.START_TXT
         await message.reply_photo(
-            photo=START_IMAGE,
+            photo=START_IMG,
             caption=caption,
             reply_markup=InlineKeyboardMarkup(btn),
             has_spoiler=True,
@@ -135,7 +130,8 @@ async def smart_handler(client, message):
  
          
         button = InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Verify the token now...", url=shortened_url)]]
+            [[InlineKeyboardButton("Verify the token now...", url=shortened_url)]],
+            [InlineKeyboardButton("Watch Tutorial✅", url= TUTORIAL_URL)]
         )
         await message.reply("Click the button below to verify your free access token: \n\n> What will you get ? \n1. No time bound upto 20 hours \n2. Batch command limit will be FreeLimit + 20 \n3. All functions unlocked", reply_markup=button)
  

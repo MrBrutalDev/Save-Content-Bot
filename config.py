@@ -27,3 +27,6 @@ YT_COOKIES = getenv("YT_COOKIES", YTUB_COOKIES)
 DEFAULT_SESSION = getenv("DEFAUL_SESSION", None)  # added old method of invite link joining
 INSTA_COOKIES = getenv("INSTA_COOKIES", INST_COOKIES)
 WAITING_TIME = int(getenv("WAITING_TIME", "45"))
+TUTORIAL_URL = getenv("TUTORIAL_URL", "")
+
+START_IMG = getenv("START_IMG","https://envs.sh/Fgv.jpg")

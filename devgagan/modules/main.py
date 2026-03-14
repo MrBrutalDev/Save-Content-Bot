@@ -8,9 +8,9 @@ from config import API_ID, API_HASH, FREEMIUM_LIMIT, PREMIUM_LIMIT, OWNER_ID, DE
 from devgagan.core.get_func import get_msg
 from devgagan.core.func import *
 from devgagan.core.mongo import db
-from pyrogram.errors import FloodWait
+from pyrogram.errors import FloodWait # type: ignore
 from datetime import datetime, timedelta
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup # type: ignore
 import subprocess
 from devgagan.modules.shrink import is_user_verified
 async def generate_random_name(length=8):
@@ -25,7 +25,7 @@ batch_mode = {}
 async def process_and_upload_link(userbot, user_id, msg_id, link, retry_count, message):
     try:
         await get_msg(userbot, user_id, msg_id, link, retry_count, message)
-        await asyncio.sleep(15)
+        await asyncio.sleep(10)
     finally:
         pass
 
